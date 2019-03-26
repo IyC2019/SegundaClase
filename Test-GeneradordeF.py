@@ -7,6 +7,8 @@ GeneradorID = Generador[0]
 inst = rm.open_resource(GeneradorID)
 
 print(inst.query("*IDN?"))
+inst.write("*IDN?")
+print(inst.read())
 inst.write('SOURCE:FREQ 100')
 inst.write('SOUR:VOLT:AMPL 1')
 
