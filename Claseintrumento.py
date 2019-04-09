@@ -2,28 +2,24 @@ import visa  # Install pyvisa: pip install pyvisa
 
 
 class instrument(object):
-
     def __init__(self, name=None, port=None):
-        # Initialization function:
-        # Args
-        # name: name of the instrument
-        # port: connection port. Can be either GPIB or serial.
-        self.rm = visa.ResourceManager()
-        rm.list_resources()
+        self = visa.ResourceManager()
+        self.list_resources()
         if not port:
-            Generador = rm.list_resources()
+            Generador = self.list_resources()
             GeneradorID = Generador[0]
             self.port = GeneradorID
         else:
             self.port = port
+        print("Opening VISA session...")
+        inst = self.open_resource(self.port)
+        print("VISA session successfully opened!")
         if not name:
             self.name = inst.query("*IDN?")
         else:
             self.name = name
-        print("Opening VISA session...")
-        print(port)
-        self.instr = self.rm.open_resource(port)
-        print("VISA session successfully opened!")
+
+        print(self.port)
 
     def __repr__(self):
         # Representation of object
@@ -34,17 +30,11 @@ class instrument(object):
 
         # Close VISA session (Close instrument connection)
         print("Killing")
-        self.rm.close()
-        print("""Communication with instrument %s at port %s will be closed..."""
-              % (self.name, self.port))
+        self.close()
+        print("""Communication with instrument %s at port %s will be closed...""" %
+              (self.name, self.port))
         print("VISA session closed!")
 
-
-rm = visa.ResourceManager()
-rm.list_resources()
-Generador = rm.list_resources()
-GeneradorID = Generador[0]
-rm.close()
 
 gen = instrument()
 gen.close_instrument()
