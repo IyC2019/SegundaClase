@@ -1,7 +1,5 @@
 import visa  # Install pyvisa: pip install pyvisa
 
-import time
-
 
 class instrument(object):
 
