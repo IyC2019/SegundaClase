@@ -3,10 +3,6 @@ import visa  # Install pyvisa: pip install pyvisa
 
 class instrument(object):
 
-    ##################################
-    # Generic instrument class
-    ##################################
-
     def __init__(self, name=None, port=None):
         # Initialization function:
         # Args
