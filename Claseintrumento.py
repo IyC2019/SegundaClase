@@ -3,7 +3,7 @@ import visa  # Install pyvisa: pip install pyvisa
 
 class instrument(object):
     def __init__(self, name=None, port=None):
-        self = visa.ResourceManager()
+        self = visa.ResourceManager() #Se crea un objeto de visa
         self.list_resources()
         if not port:
             Generador = self.list_resources()
